@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
-  GET "cocktails", to: "cocktails#index"
-  GET "cocktails/:id", to: "cocktails#show"
-  GET "cocktails/new", to: "cocktails#new"
-  POST "cocktails", to: "cocktails#create"
-  GET "cocktails/42/doses/new"
-  POST "cocktails/42/doses"
+  get 'doses/new'
 
-  resources :doses, only:
+  get 'doses/create'
+
+  get 'doses/destroy'
+
+  resources :cocktails, only: [:show, :index, :new, :create] do
+    resources :doses, only: [:new, :create]
+  end
+
+  resources :doses, only: :destroy
+  root "cocktails#index"
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

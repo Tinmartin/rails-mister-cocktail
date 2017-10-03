@@ -1,3 +1,25 @@
-<% @cocktails.each do |cocktail| %>
-  <h2><%= cocktail.name %></h2>
-<% end %>
+
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('http://docteurbonnebouffe.com/wp-content/uploads/2013/08/cocktails-les-plus-caloriques.jpg');">
+  <div class="banner-content">
+    <h1> COCKTAILS</h1>
+    <p>Enjoy and participate to create the greatest collection of cocktails...</p>
+    <div class="btn btn-primary">
+      <%= link_to "Create a new cocktail !", new_cocktail_path %>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <h2>Vos dernières créations</h2>
+  <div class="text-center" id="last_creations">
+  <div class="row">
+
+    <% @cocktails.each do |cocktail| %>
+      <p><%= cocktail.name %></p>
+      <p>
+        <%= link_to "see", cocktail_path(cocktail) %>
+      </p>
+    <% end %>
+
+  </div>
